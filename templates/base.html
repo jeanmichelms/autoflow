@@ -61,11 +61,21 @@
         form p {
             margin-bottom: 12px;
         }
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 6px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -76,6 +86,7 @@
             <a href="/">Início</a>
             <a href="/clientes/">Clientes</a>
             <a href="/veiculos/">Veículos</a>
+            <a href="/manutencoes/">Manutenções</a>
             <a href="/admin/">Admin</a>
         </nav>
     </header>

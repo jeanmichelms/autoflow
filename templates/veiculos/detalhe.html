@@ -11,6 +11,19 @@
 <p><strong>Cor:</strong> {{ veiculo.cor }}</p>
 <p><strong>Chassi:</strong> {{ veiculo.chassi }}</p>
 <p><strong>Data de Cadastro:</strong> {{ veiculo.data_cadastro }}</p>
+<hr>
+<h3>Manutenções do Veículo</h3>
+<a class="btn" href="{% url 'manutencoes_novo' %}">Nova Manutenção</a>
+<br><br>
+{% for manutencao in veiculo.manutencoes.all %}
+<p>
+    <strong>{{ manutencao.data_manutencao|date:'d/m/Y' }}</strong> - {{ manutencao.descricao }}
+    {% if manutencao.valor %} - R$ {{ manutencao.valor }}{% endif %}
+    {% if manutencao.data_proxima_manutencao %}<br><small>Próxima prevista: {{ manutencao.data_proxima_manutencao|date:'d/m/Y' }}</small>{% endif %}
+</p>
+{% empty %}
+<p>Nenhuma manutenção cadastrada para este veículo.</p>
+{% endfor %}
 <a class="btn" href="{% url 'veiculos_editar' veiculo.id %}">Editar</a>
 <a class="btn btn-secondary" href="{% url 'veiculos_lista' %}">Voltar</a>
 {% endblock %}
