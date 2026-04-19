@@ -9,7 +9,7 @@ class Veiculo(models.Model):
     ano = models.PositiveIntegerField()
     placa = models.CharField(max_length=10, unique=True)
     cor = models.CharField(max_length=50, blank=True, null=True)
-    chassi = models.CharField(max_length=30, unique=True)
+    chassi = models.CharField(max_length=30, unique=True, blank=True, null=True)
     data_cadastro = models.DateTimeField(auto_now_add=True)
 
     class Meta:
