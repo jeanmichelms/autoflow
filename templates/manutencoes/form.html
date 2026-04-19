@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% if object %}Editar{% else %}Nova{% endif %} Manutenção</h2>
+<form method="post">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+        <div style="color: #dc2626; margin-bottom: 16px;">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    <p>
+        <label for="{{ form.veiculo.id_for_label }}">{{ form.veiculo.label }}</label>
+        {{ form.veiculo }}
+        {% if form.veiculo.errors %}<span style="color: #dc2626;">{{ form.veiculo.errors }}</span>{% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.data_manutencao.id_for_label }}">{{ form.data_manutencao.label }}</label>
+        {{ form.data_manutencao }}
+        {% if form.data_manutencao.errors %}<span style="color: #dc2626;">{{ form.data_manutencao.errors }}</span>{% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.data_proxima_manutencao.id_for_label }}">{{ form.data_proxima_manutencao.label }}</label>
+        {{ form.data_proxima_manutencao }}
+        {% if form.data_proxima_manutencao.errors %}<span style="color: #dc2626;">{{ form.data_proxima_manutencao.errors }}</span>{% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.quilometragem.id_for_label }}">{{ form.quilometragem.label }}</label>
+        {{ form.quilometragem }}
+        {% if form.quilometragem.errors %}<span style="color: #dc2626;">{{ form.quilometragem.errors }}</span>{% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.valor.id_for_label }}">{{ form.valor.label }}</label>
+        {{ form.valor }}
+        {% if form.valor.errors %}<span style="color: #dc2626;">{{ form.valor.errors }}</span>{% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.descricao.id_for_label }}">{{ form.descricao.label }}</label>
+        {{ form.descricao }}
+        {% if form.descricao.errors %}<span style="color: #dc2626;">{{ form.descricao.errors }}</span>{% endif %}
+    </p>
+
+    <p>
+        <label for="{{ form.observacoes.id_for_label }}">{{ form.observacoes.label }}</label>
+        {{ form.observacoes }}
+        {% if form.observacoes.errors %}<span style="color: #dc2626;">{{ form.observacoes.errors }}</span>{% endif %}
+    </p>
+
+    <button class="btn" type="submit">Salvar</button>
+    <a class="btn btn-secondary" href="{% url 'manutencoes_lista' %}">Cancelar</a>
+</form>
+{% endblock %}
