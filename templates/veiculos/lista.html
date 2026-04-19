@@ -26,9 +26,9 @@
             <td>{{ veiculo.ano }}</td>
             <td>{{ veiculo.placa }}</td>
             <td>
-                <a href="{% url 'veiculos_detalhe' veiculo.id %}">Ver</a> |
-                <a href="{% url 'veiculos_editar' veiculo.id %}">Editar</a> |
-                <a href="{% url 'veiculos_excluir' veiculo.id %}">Excluir</a>
+                <a class="btn" href="{% url 'veiculos_detalhe' veiculo.id %}">Ver</a>
+                <a class="btn btn-secondary" href="{% url 'veiculos_editar' veiculo.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'veiculos_excluir' veiculo.id %}">Excluir</a>
             </td>
         </tr>
         {% empty %}

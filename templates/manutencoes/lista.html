@@ -21,7 +21,7 @@
         {% for manutencao in manutencoes %}
         <tr>
             <td>{{ manutencao.id }}</td>
-            <td>{{ manutencao.veiculo.marca }} {{ manutencao.veiculo.modelo }} - {{ manutencao.veiculo.placa }}</td>
+            <td>{{ manutencao.veiculo.cliente.nome }} ({{ manutencao.veiculo.cliente.cpf }}) - {{ manutencao.veiculo.marca }} - {{ manutencao.veiculo.modelo }} ({{ manutencao.veiculo.ano }}) - {{ manutencao.veiculo.placa }}</td>
             <td>{{ manutencao.descricao }}</td>
             <td>{{ manutencao.data_manutencao|date:'d/m/Y' }}</td>
             <td>{{ manutencao.data_proxima_manutencao|date:'d/m/Y'|default:'-' }}</td>

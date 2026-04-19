@@ -36,6 +36,7 @@ class ManutencaoForm(forms.ModelForm):
             'observacoes': 'Observações',
         }
         widgets = {
+            'veiculo': forms.HiddenInput(),
             'descricao': forms.Textarea(attrs={'rows': 5, 'style': 'width: 100%; box-sizing: border-box;'}),
             'data_manutencao': forms.DateInput(format=HTML5_DATE_FORMAT, attrs={'type': 'date'}),
             'data_proxima_manutencao': forms.DateInput(format=HTML5_DATE_FORMAT, attrs={'type': 'date'}),
@@ -45,6 +46,7 @@ class ManutencaoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.fields['veiculo'].required = True
         self.fields['data_manutencao'].input_formats = [HTML5_DATE_FORMAT]
         self.fields['data_proxima_manutencao'].input_formats = [HTML5_DATE_FORMAT]
 
