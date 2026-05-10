@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'clientes',
     'veiculos',    
-    'manutencoes',
+    'manutencoes.apps.ManutencoesConfig',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,39 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# E-mail
+EMAIL_BACKEND = os.getenv(
+    'EMAIL_BACKEND',
+    'django.core.mail.backends.smtp.EmailBackend',
+)
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'localhst') # Substitua pelo host SMTP real do serviço de e-mail que você usará (ex: 'smtp.gmail.com' para Gmail)
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587')) # Substitua pela porta real do serviço de e-mail (ex: 587 para Gmail com TLS, 465 para SSL)
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'xjeanmichel@gmail.com') # Substitua pelo e-mail real que enviará os avisos
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'kuyi nehk zdth ffrl') # Substitua pela senha real do e-mail (ou senha de app, se usar autenticação em duas etapas)
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True').lower() in (
+    '1',
+    'true',
+    'yes',
+    'sim',
+)
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER or 'autoflow@localhost')
+
+
+# Aviso de revisão por e-mail
+AVISO_REVISAO_EMAIL_SERVICO_ATIVO = os.getenv(
+    'AVISO_REVISAO_EMAIL_SERVICO_ATIVO',
+    'True',
+).lower() in ('1', 'true', 'yes', 'sim')
+AVISO_REVISAO_EMAIL_HORARIO_ENVIO = os.getenv(
+    'AVISO_REVISAO_EMAIL_HORARIO_ENVIO',
+    '08:00', # Horário diário de envio no formato HH:MM (24h)
+)
+AVISO_REVISAO_EMAIL_DIAS_ANTECEDENCIA = int(
+    os.getenv('AVISO_REVISAO_EMAIL_DIAS_ANTECEDENCIA', '7')
+)
+AVISO_REVISAO_EMAIL_ASSUNTO = os.getenv(
+    'AVISO_REVISAO_EMAIL_ASSUNTO',
+    'Lembrete de revisão do veículo',
+)
